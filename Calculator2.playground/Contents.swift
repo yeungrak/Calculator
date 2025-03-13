@@ -1,7 +1,12 @@
 import UIKit
 
-class AddOperation {
-    func add (a: Int, b: Int) -> Int? { //더하기
+
+protocol AbstractOperation {
+    func calculator (a: Int, b: Int) -> Int?
+}
+
+class AddOperation:AbstractOperation {
+    func calculator (a: Int, b: Int) -> Int? { //더하기
         let (result, isOverflow) = a.addingReportingOverflow(b)
         
         if isOverflow { //오버플로우 발생시 처리과정
@@ -12,27 +17,27 @@ class AddOperation {
     }
 }
 //빼기
-class SubstractOperation {
-    func minus (a: Int, b:Int) -> Int {
+class SubstractOperation:AbstractOperation {
+    func calculator (a: Int, b:Int) -> Int? {
         return a - b
     }
 }
 //곱하기
-class MultiplyOperation {
-    func multi (a: Int, b: Int) -> Int? {
+class MultiplyOperation:AbstractOperation {
+    func calculator (a: Int, b: Int) -> Int? {
         return a * b
     }
 }
 //나누기
-class DivideOperation {
-    func division (a: Int, b: Int) -> Int { //나누기
+class DivideOperation:AbstractOperation {
+    func calculator (a: Int, b: Int) -> Int? { //나누기
         return a / b
     }
 }
 
 //나머지 연산
-class Remainder {
-    func remainder (a: Int, b: Int) -> Int? {
+class Remainder:AbstractOperation {
+    func calculator (a: Int, b: Int) -> Int? {
             //나누는 숫자가 0일때(예외 상황)
             if a == 0 || b == 0 {
                 print("옳지 않은 숫자 입니다.")
@@ -44,33 +49,18 @@ class Remainder {
 
 class Calculator { //새로운 클래스 calculator를 만들어 계산을 처리해주는 클래스로 활용
     
-    let addResult = AddOperation()
-    let minusResult = SubstractOperation()
-    let multiResult = MultiplyOperation()
-    let divisionResult = DivideOperation()
-    let remainderResult = Remainder()
+    let operations : [AbstractOperation]
     
-    func addfunc (a: Int, b: Int) -> Int? {
-        return addResult.add(a: a, b: b)
+    init() {
+        self.operations = [
+            AddOperation(), SubstractOperation(), MultiplyOperation(), DivideOperation(), Remainder()
+        ]
     }
-    func minusfunc (a: Int, b: Int) -> Int? {
-        return minusResult.minus(a: a, b: b)
-    }
-    func multifunc (a: Int, b: Int) -> Int? {
-        return multiResult.multi(a: a, b: b)
-    }
-    func divisionfunc (a: Int, b: Int) -> Int? {
-        return divisionResult.division(a: a, b: b)
-    }
-    func remainderfunc (a: Int, b: Int) -> Int? {
-        return remainderResult.remainder(a: a, b: b)
+    
+    func calculateadd (a: Int, b: Int) -> Int? {
+        return operations.AddOperation(a: a, b: b)
     }
 }
-
 let lastResult = Calculator()
-// 예외 상황 처리 : ??
-print(lastResult.addfunc(a: 1, b: 2) ?? "계산 불가")
-print(lastResult.minusfunc(a: 4, b: 2) ?? "계산 불가")
-print(lastResult.multifunc(a: 20, b: 10) ?? "계산 불가")
-print(lastResult.divisionfunc(a: 20, b: 10) ?? "계산 불가")
-print(lastResult.remainderfunc(a: 50, b: 2) ?? "계산 불가")
+print(lastResult.calculateadd(a: 1, b: 2))
+
