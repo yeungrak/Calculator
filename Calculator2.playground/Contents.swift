@@ -1,6 +1,6 @@
 import UIKit
 
-class add {
+class AddOperation {
     func add (a: Int, b: Int) -> Int? { //더하기
         let (result, isOverflow) = a.addingReportingOverflow(b)
         
@@ -12,26 +12,26 @@ class add {
     }
 }
 //빼기
-class minus {
+class SubstractOperation {
     func minus (a: Int, b:Int) -> Int {
         return a - b
     }
 }
 //곱하기
-class multi {
+class MultiplyOperation {
     func multi (a: Int, b: Int) -> Int? {
         return a * b
     }
 }
 //나누기
-class division {
+class DivideOperation {
     func division (a: Int, b: Int) -> Int { //나누기
         return a / b
     }
 }
 
 //나머지 연산
-class remainder {
+class Remainder {
     func remainder (a: Int, b: Int) -> Int? {
             //나누는 숫자가 0일때(예외 상황)
             if a == 0 || b == 0 {
@@ -44,11 +44,11 @@ class remainder {
 
 class Calculator { //새로운 클래스 calculator를 만들어 계산을 처리해주는 클래스로 활용
     
-    let addResult = add()
-    let minusResult = minus()
-    let multiResult = multi()
-    let divisionResult = division()
-    let remainderResult = remainder()
+    let addResult = AddOperation()
+    let minusResult = SubstractOperation()
+    let multiResult = MultiplyOperation()
+    let divisionResult = DivideOperation()
+    let remainderResult = Remainder()
     
     func addfunc (a: Int, b: Int) -> Int? {
         return addResult.add(a: a, b: b)
