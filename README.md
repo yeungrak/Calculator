@@ -10,11 +10,11 @@
 
 ### Lv 3
 - ● 아래 각각의 클래스들을 만들고 클래스간의 관계를 고려하여 Calculator 클래스와 관계 맺기
- - ◻︎ AddOperation
- - ◻︎ SubstractOperation
- - ◻︎ MultiplyOperation
- - ◻︎ DivideOperation
+ - AddOperation
+ - SubstractOperation
+ - MultiplyOperation
+ - DivideOperation
 
 - Calculator 클래스의 내부코드를 변경
- - ◻︎ 관계를 맺은 후 필요하다면 별도로 만든 연산 클래스의 인스턴스를 Calculator 내부에서 사용
+ - 관계를 맺은 후 필요하다면 별도로 만든 연산 클래스의 인스턴스를 Calculator 내부에서 사용
  
